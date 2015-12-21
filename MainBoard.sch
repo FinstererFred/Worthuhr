@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -6773,6 +6773,42 @@ type RDH, grid 15 mm</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="cc5v-t1a">
+<packages>
+<package name="CC5V-T1A">
+<smd name="P$1" x="-1.7" y="0" dx="1.1" dy="1.9" layer="1" rot="R180"/>
+<smd name="P$2" x="1.7" y="0" dx="1.1" dy="1.9" layer="1" rot="R180"/>
+</package>
+</packages>
+<symbols>
+<symbol name="CC5V-T1A">
+<wire x1="-2.54" y1="5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="-2.54" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<pin name="P$1" x="5.08" y="2.54" length="middle" rot="R180"/>
+<pin name="P$2" x="5.08" y="-2.54" length="middle" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CC5V-T1A">
+<gates>
+<gate name="G$1" symbol="CC5V-T1A" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CC5V-T1A">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -6808,7 +6844,6 @@ type RDH, grid 15 mm</description>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="R6" library="eagle-ltspice" deviceset="R" device="R0603" value="10k"/>
-<part name="R9" library="eagle-ltspice" deviceset="R" device="R0603" value="r2"/>
 <part name="R5" library="eagle-ltspice" deviceset="R" device="R0603" value="10k"/>
 <part name="C1" library="eagle-ltspice" deviceset="C" device="C0603" value="100uF"/>
 <part name="C3" library="eagle-ltspice" deviceset="C" device="C0603" value="100uF"/>
@@ -6877,6 +6912,7 @@ type RDH, grid 15 mm</description>
 <part name="R16" library="resistor" deviceset="R-EU_" device="R0805" value="5R6"/>
 <part name="R2" library="resistor" deviceset="R-EU_" device="R0805" value="5R6"/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
+<part name="U$2" library="cc5v-t1a" deviceset="CC5V-T1A" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6907,7 +6943,6 @@ type RDH, grid 15 mm</description>
 <instance part="GND18" gate="1" x="35.56" y="116.84" rot="R90"/>
 <instance part="GND19" gate="1" x="48.26" y="137.16" rot="R180"/>
 <instance part="R6" gate="G$1" x="2.54" y="111.76"/>
-<instance part="R9" gate="G$1" x="40.64" y="104.14" rot="R90"/>
 <instance part="R5" gate="G$1" x="2.54" y="116.84"/>
 <instance part="C1" gate="G$1" x="-99.06" y="124.46"/>
 <instance part="C3" gate="G$1" x="-106.68" y="109.22"/>
@@ -6976,6 +7011,7 @@ type RDH, grid 15 mm</description>
 <instance part="R16" gate="G$1" x="218.44" y="-22.86" rot="R270"/>
 <instance part="R2" gate="G$1" x="325.12" y="142.24"/>
 <instance part="GND13" gate="1" x="-106.68" y="116.84" rot="R180"/>
+<instance part="U$2" gate="G$1" x="40.64" y="104.14" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -7606,22 +7642,6 @@ type RDH, grid 15 mm</description>
 <wire x1="48.26" y1="111.76" x2="33.02" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$33" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="X2"/>
-<wire x1="40.64" y1="109.22" x2="33.02" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="109.22" x2="33.02" y2="106.68" width="0.1524" layer="91"/>
-<pinref part="R9" gate="G$1" pin="2"/>
-</segment>
-</net>
-<net name="N$37" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="X1"/>
-<wire x1="40.64" y1="99.06" x2="33.02" y2="99.06" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="99.06" x2="33.02" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="R9" gate="G$1" pin="1"/>
-</segment>
-</net>
 <net name="N$47" class="0">
 <segment>
 <wire x1="342.9" y1="88.9" x2="330.2" y2="88.9" width="0.1524" layer="91"/>
@@ -8143,12 +8163,23 @@ type RDH, grid 15 mm</description>
 <wire x1="-5.08" y1="83.82" x2="-45.72" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="X2"/>
+<pinref part="U$2" gate="G$1" pin="P$2"/>
+<wire x1="33.02" y1="106.68" x2="35.56" y2="106.68" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U$2" gate="G$1" pin="P$1"/>
+<pinref part="IC1" gate="G$1" pin="X1"/>
+<wire x1="35.56" y1="101.6" x2="33.02" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="115,1,-64.9012,153.628,PROG,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 </eagle>
